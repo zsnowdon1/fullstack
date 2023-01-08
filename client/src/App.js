@@ -6,7 +6,7 @@ import { getPosts } from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import LoginPage from './components/LoginPage/LoginPage';
-
+import SignUpPage from "./components/SignUpPage/SignUpPage";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const App = () => {
         <Router basename="/">
             <Routes basename="/">
                 <Route exact path="/signin" element={<LoginPage/>}/>
+                <Route exact path="/signup" element={<SignUpPage/>}/>
             </Routes>
         </Router>
         // <Container maxWidth="lg">

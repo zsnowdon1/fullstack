@@ -10,11 +10,11 @@ export const signin = (loginData, router) => async (dispatch) => {
     }
 }
 
-export const signup = (formData, history) => async (dispatch) => {
+export const signup = (signUpData, router) => async (dispatch) => {
     try {
-        // sign up the user..
-
-        history.push('/');
+        const { data } = await api.signup(signUpData);
+        dispatch({ type: 'AUTH', data });
+        router.push('/');
     } catch (error) {
         console.log(error.message);
     }
