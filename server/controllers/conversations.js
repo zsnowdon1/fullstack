@@ -23,13 +23,17 @@ export const getConversationById = async (req, res) => {
 }
 
 export const createConversation = async (req, res) => {
-    const post = req.body;
+    const conversation = req.body.conversation;
+    const message = req.body.message;
 
-    const newConversation = new Conversation(post);
+    const newConversation = new Conversation(conversation);
     
     try {
         await newConversation.save();
-        res.status(201).json(newConversation);
+        message.conversationId = newConversation._id;
+        const newMessage = new Messages(message);
+        await newMessage.save();
+        res.status(201).json({conversation: newConversation, message: newMessage});
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
