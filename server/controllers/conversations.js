@@ -3,7 +3,6 @@ import Conversation from "../models/conversations.js";
 export const getConversations = async (req, res) => {
     try {
         const conversations = await Conversation.find();
-        console.log(conversations);
         res.status(200).json(conversations);
     } catch (error) {
         res.status(404).json({ message: error.message });
